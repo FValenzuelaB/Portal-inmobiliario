@@ -13,3 +13,11 @@ class RegionAdmin(admin.ModelAdmin):
 @admin.register(Inmueble)
 class InmuebleAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(SolicitudArriendo)
+class SolicitudAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(PerfilUser)
+class PerfiluserAdmin(admin.ModelAdmin):
+    pass
