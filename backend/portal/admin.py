@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 @admin.register(Comuna)
@@ -20,4 +21,11 @@ class SolicitudAdmin(admin.ModelAdmin):
 
 @admin.register(PerfilUser)
 class PerfiluserAdmin(admin.ModelAdmin):
-    pass
+    
+    fieldsets = UserAdmin.fieldsets + (
+        ("información extra", {"fields":("rut","tipo_usuario")}),
+    )
+
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {"fields":("rut","tipo_usuario")})
+    )
