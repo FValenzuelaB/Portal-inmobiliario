@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User, AbstractUser
+
 import uuid
 from django.conf import settings
 
@@ -29,6 +30,7 @@ class Inmueble(models.Model):
 
     propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="inmuebles")
     nombre = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to='inmuebles/', default="no_img.jpg" )
     descripcion = models.CharField()
     m2_construidos = models.FloatField(default=0)
     m2_totales = models.FloatField(default=0)
@@ -43,7 +45,7 @@ class Inmueble(models.Model):
     tipo_de_inmueble = models.CharField(max_length=20, choices=Tipo_de_inmueble.choices)
 
     def __str__(self):
-        return f"{self.nombre}, Propietario: {self.propietario}"
+        return f"{self.nombre}"
     
 class SolicitudArriendo(models.Model):
     class EstadoSolicitud(models.TextChoices):
@@ -68,11 +70,9 @@ class PerfilUser(AbstractUser):
         arrendatario= "ARRENDATARIO", _("Arrendatario")
         arrendador = "ARRENDADOR", _("Arrendador")
 
-    
     tipo_usuario = models.CharField(max_length=13, choices=TipoUsuario.choices, default=TipoUsuario.arrendatario)
     rut = models.CharField(max_length=20, unique=True)
-
-    
+    imagen = models.ImageField(upload_to='inmuebles/', default="default.jpg" )
 
     def __str__(self):
         return f"{self.username}"

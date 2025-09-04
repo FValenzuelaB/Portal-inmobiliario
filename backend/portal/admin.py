@@ -23,7 +23,7 @@ class SolicitudAdmin(admin.ModelAdmin):
 class PerfiluserAdmin(admin.ModelAdmin):
     
     fieldsets = UserAdmin.fieldsets + (
-        ("información extra", {"fields":("rut","tipo_usuario")}),
+        ("información extra", {"fields":("rut","tipo_usuario","imagen")}),
     )
 
     add_fieldsets = UserAdmin.add_fieldsets + (

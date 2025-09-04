@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    Creacion Inmueble
-    <form method="post" enctype="multipart/form-data">
+    <h2>Login</h2>
+    <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Agregar Inmueble</button>
+        <button type="submit" href="{% url 'home' %}">Login</button>
     </form>
 </body>
 </html>
